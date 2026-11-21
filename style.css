@@ -1,0 +1,28 @@
+body {
+  background-color: #fff8e7;
+  color: #333333;
+  font-family: sans-serif;
+  margin: 40px;
+}
+
+h1 {
+  color: #e07b39;
+  border-bottom: 2px solid #e07b39;
+  padding-bottom: 8px;
+}
+
+h2 {
+  margin-top: 32px;
+}
+
+button {
+  background-color: #e07b39;
+  color: #ffffff;
+  border: none;
+  padding: 6px 16px;
+  cursor: pointer;
+}
+
+#result-area {
+  margin-top: 20px;
+}
