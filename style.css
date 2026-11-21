@@ -17,17 +17,8 @@ h2 {
   margin-top: 36px;
 }
 
-button {
-  background-color: #f3c6d3;
-  color: #444444;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 16px;
-  cursor: pointer;
-}
-
-#result-area {
-  margin-top: 20px;
+#greeting {
+  font-size: 18px;
 }
 
 footer {
