@@ -26,6 +26,23 @@ function assessment(userName) {
   return result;
 }
 
+// 紙吹雪をどばっと降らせる
+function confetti() {
+  const colors = ['#ff0000', '#ff8c00', '#ffd700', '#00c853', '#2979ff', '#aa00ff'];
+  for (let i = 0; i < 80; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+    document.body.appendChild(piece);
+    // 降り終わったら消す
+    setTimeout(() => {
+      piece.remove();
+    }, 4500);
+  }
+}
+
 const userNameInput = document.getElementById('user-name');
 const assessButton = document.getElementById('assess');
 const resultArea = document.getElementById('result-area');
@@ -35,12 +52,29 @@ assessButton.addEventListener('click', () => {
   if (!userName) {
     return;
   }
-  // 前の診断結果を消してから、新しい結果を表示する
+  // 演出中はボタンを押せなくする
+  assessButton.disabled = true;
   resultArea.innerText = '';
-  const header = document.createElement('h3');
-  header.innerText = '診断結果';
-  resultArea.appendChild(header);
   const paragraph = document.createElement('p');
-  paragraph.innerText = assessment(userName);
+  paragraph.className = 'result-text';
   resultArea.appendChild(paragraph);
+
+  // スロットみたいに結果を高速で切り替える
+  const timer = setInterval(() => {
+    const randomIndex = Math.floor(Math.random() * answers.length);
+    let text = answers[randomIndex];
+    text = text.replaceAll('###userName###', userName);
+    paragraph.innerText = text;
+    paragraph.style.color = '#' + Math.floor(Math.random() * 0xffffff).toString(16);
+  }, 50);
+
+  // 約2秒後に本当の結果で止める
+  setTimeout(() => {
+    clearInterval(timer);
+    paragraph.innerText = '🎉 ' + assessment(userName) + ' 🎉';
+    paragraph.className = 'result-final';
+    paragraph.style.color = '';
+    confetti();
+    assessButton.disabled = false;
+  }, 2000);
 });
