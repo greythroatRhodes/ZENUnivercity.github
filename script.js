@@ -4,10 +4,10 @@
 const hour = new Date().getHours();
 let message = '';
 if (hour >= 5 && hour < 11) {
-  message = 'おはようございます。ゆずのページへようこそ。';
+  message = 'おはようございます。倉地のページへようこそ。';
 } else if (hour >= 11 && hour < 18) {
-  message = 'こんにちは。ゆずのページへようこそ。';
+  message = 'こんにちは。倉地のページへようこそ。';
 } else {
-  message = 'こんばんは。ゆずのページへようこそ。';
+  message = 'こんばんは。倉地のページへようこそ。';
 }
 document.getElementById('greeting').innerText = message;
